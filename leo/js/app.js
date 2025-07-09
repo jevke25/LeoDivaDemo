@@ -1,8 +1,44 @@
 // Main application initialization
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize language buttons
-    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-    document.getElementById('lang-ar').addEventListener('click', () => setLanguage('ar'));
+    // Initialize language selector
+    const langToggle = document.getElementById('lang-toggle');
+    const langDropdown = document.getElementById('lang-dropdown');
+    const langOptions = document.querySelectorAll('.lang-option');
+    
+    // Toggle dropdown
+    langToggle.addEventListener('click', () => {
+        langDropdown.classList.toggle('show');
+        langToggle.classList.toggle('active');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!langToggle.contains(e.target) && !langDropdown.contains(e.target)) {
+            langDropdown.classList.remove('show');
+            langToggle.classList.remove('active');
+        }
+    });
+    
+    // Language selection
+    langOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const lang = option.dataset.lang;
+            setLanguage(lang);
+            langDropdown.classList.remove('show');
+            langToggle.classList.remove('active');
+            
+            // Update active state
+            langOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+        });
+    });
+    
+    // Set initial active language
+    const currentLang = localStorage.getItem('language') || 'en';
+    const activeOption = document.querySelector(`[data-lang="${currentLang}"]`);
+    if (activeOption) {
+        activeOption.classList.add('active');
+    }
     // [LEO-DIVA-AUTH] Authentication handling
 
 let currentUser = null;

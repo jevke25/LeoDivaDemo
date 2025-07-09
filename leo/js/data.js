@@ -1,5 +1,101 @@
 // [LEO-DIVA-DATA] Replace with real API calls in production
 
+// Demo attendees for each class
+const demoAttendees = {
+    'class1': [
+        {
+            name: 'Sarah Johnson',
+            email: 'sarah.j@example.com',
+            membership: 'premium',
+            checkInTime: '07:45'
+        },
+        {
+            name: 'Michael Chen',
+            email: 'michael.c@example.com',
+            membership: 'basic',
+            checkInTime: '07:50'
+        },
+        {
+            name: 'Emma Wilson',
+            email: 'emma.w@example.com',
+            membership: 'premium',
+            checkInTime: '07:55'
+        },
+        {
+            name: 'David Rodriguez',
+            email: 'david.r@example.com',
+            membership: 'basic',
+            checkInTime: '08:00'
+        }
+    ],
+    'class2': [
+        {
+            name: 'Ahmed Mahmoud',
+            email: 'ahmed.m@example.com',
+            membership: 'basic',
+            checkInTime: '16:45'
+        },
+        {
+            name: 'Lisa Thompson',
+            email: 'lisa.t@example.com',
+            membership: 'premium',
+            checkInTime: '16:50'
+        },
+        {
+            name: 'James Brown',
+            email: 'james.b@example.com',
+            membership: 'premium',
+            checkInTime: '16:55'
+        },
+        {
+            name: 'Maria Garcia',
+            email: 'maria.g@example.com',
+            membership: 'basic',
+            checkInTime: '17:00'
+        }
+    ],
+    'class3': [
+        {
+            name: 'Carlos Mendez',
+            email: 'carlos.m@example.com',
+            membership: 'premium',
+            checkInTime: '18:45'
+        },
+        {
+            name: 'Anna Kim',
+            email: 'anna.k@example.com',
+            membership: 'basic',
+            checkInTime: '18:50'
+        },
+        {
+            name: 'Robert Taylor',
+            email: 'robert.t@example.com',
+            membership: 'premium',
+            checkInTime: '18:55'
+        }
+    ],
+    'class4': [
+        {
+            name: 'Sophie Chen',
+            email: 'sophie.c@example.com',
+            membership: 'premium',
+            checkInTime: '09:45'
+        },
+        {
+            name: 'John Smith',
+            email: 'john.s@example.com',
+            membership: 'basic',
+            checkInTime: '09:50'
+        },
+        {
+            name: 'Rachel Green',
+            email: 'rachel.g@example.com',
+            membership: 'premium',
+            checkInTime: '09:55'
+        }
+    ]
+};
+
 // Demo users
 const demoUsers = {
     // Member accounts
@@ -47,7 +143,7 @@ const demoClasses = {
         time: '08:00 - 09:00',
         day: 'Mon, Wed, Fri',
         capacity: 15,
-        booked: 12,
+        booked: 4,
         level: 'Beginner'
     },
     'class2': {
@@ -58,7 +154,7 @@ const demoClasses = {
         time: '17:00 - 18:00',
         day: 'Tue, Thu',
         capacity: 20,
-        booked: 18,
+        booked: 4,
         level: 'Advanced'
     },
     'class3': {
@@ -69,7 +165,7 @@ const demoClasses = {
         time: '19:00 - 20:00',
         day: 'Mon, Fri',
         capacity: 25,
-        booked: 22,
+        booked: 3,
         level: 'All Levels'
     },
     'class4': {
@@ -80,7 +176,7 @@ const demoClasses = {
         time: '10:00 - 11:00',
         day: 'Wed, Sat',
         capacity: 10,
-        booked: 8,
+        booked: 3,
         level: 'Intermediate'
     }
 };
@@ -125,6 +221,7 @@ window.demoUsers = {
 
 // Make other demo data available globally
 window.demoClasses = demoClasses;
+window.demoAttendees = demoAttendees;
 
 window.demoPackages = [
     // ... (keep the rest of your demoPackages array)
@@ -198,6 +295,8 @@ function getUserBookings(userId) {
 
     return user.bookings.map(bookingId => demoClasses[bookingId]);
 }
+
+
 
 // [LEO-DIVA-API] This is where you would add real API integration
 // For example:

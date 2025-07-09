@@ -1,74 +1,72 @@
 // View management
 const views = {
         login: `
-        <div class="login-container">
-            <div class="card fade-in">
-                <div class="nav-logo">
+        <div class="login-container fade-in">
+            <div class="card login-card">
+                <div class="login-logo">
                     <img src="assets/logo.svg" alt="LEO Diva Logo">
-                    <h1 data-i18n="appTitle">LEO Diva Gym</h1>
                 </div>
-                <h2 data-i18n="loginTitle">Welcome to LEO Diva</h2>
-                <p data-i18n="loginSubtitle">Please sign in to continue</p>
-
+                <h2 class="login-title" data-i18n="loginTitle">Welcome to LEO Diva</h2>
                 <form id="loginForm">
                     <div class="form-group">
-                        <label for="email" data-i18n="emailLabel">Email Address</label>
-                        <input type="email" id="email" class="form-control" data-i18n-placeholder="emailLabel" required>
+                        <label for="loginEmail" data-i18n="email">Email</label>
+                        <input type="email" id="loginEmail" class="form-control" required autocomplete="username">
                     </div>
                     <div class="form-group">
-                        <label for="password" data-i18n="passwordLabel">Password</label>
-                        <input type="password" id="password" class="form-control" data-i18n-placeholder="passwordLabel" required>
+                        <label for="loginPassword" data-i18n="password">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" required autocomplete="current-password">
                     </div>
-                    <button type="submit" class="btn btn-primary" data-i18n="loginButton">Sign In</button>      
+                    <button type="submit" class="btn btn-primary btn-block" data-i18n="login">Login</button>
                 </form>
-
-                <div class="text-center mt-3">
-                    <a href="#" data-i18n="forgotPassword">Forgot Password?</a>
-                    <p data-i18n="noAccount">Don't have an account? <a href="#" data-i18n="signUp">Sign Up</a></p>
-                </div>
             </div>
         </div>
     `,
     
-    memberDashboard: `
-        <div class="slide-up">
+        memberDashboard: `
+        <div class="fade-in">
             <div class="navbar">
                 <div class="nav-logo">
-                    <img src="assets/logo.png" alt="LEO Diva Logo">
-                    <h1 data-i18n="appTitle">LEO Diva Gym</h1>
+                    <img src="assets/logo.svg" alt="LEO Diva Logo">
+                    <h1 data-i18n="appTitle">LEO Diva</h1>
                 </div>
                 <div class="nav-menu">
-                    <a href="#" class="nav-item active" onclick="navigateTo('memberDashboard')" data-i18n="upcomingClasses">Upcoming Classes</a>
+                    <a href="#" class="nav-item active" onclick="navigateTo('memberDashboard')" data-i18n="upcomingClasses">Classes</a>
                     <a href="#" class="nav-item" onclick="navigateTo('myBookings')" data-i18n="myBookings">My Bookings</a>
                     <a href="#" class="nav-item" onclick="navigateTo('membership')" data-i18n="membership">Membership</a>
-                    <a href="#" class="nav-item" onclick="logout()" data-i18n="logout">Logout</a>
+                    <a href="#" class="nav-item btn-ghost" onclick="logout()" data-i18n="logout">Logout</a>
                 </div>
             </div>
-            
-            <h2 data-i18n="upcomingClasses">Upcoming Classes</h2>
-            <div id="classList" class="dashboard-grid">
-                <!-- Classes will be loaded here -->
+
+            <div class="card">
+                <h2 data-i18n="upcomingClasses">Today's Classes</h2>
+                <p>Discover and book your next fitness session</p>
+                <div id="classList" class="dashboard-grid">
+                    <!-- Classes will be loaded here -->
+                </div>
             </div>
         </div>
     `,
     
-    staffDashboard: `
-        <div class="slide-up">
+        staffDashboard: `
+        <div class="fade-in">
             <div class="navbar">
                 <div class="nav-logo">
-                    <img src="assets/logo.png" alt="LEO Diva Logo">
-                    <h1 data-i18n="appTitle">LEO Diva Gym</h1>
+                    <img src="assets/logo.svg" alt="LEO Diva Logo">
+                    <h1 data-i18n="appTitle">LEO Diva</h1>
                 </div>
                 <div class="nav-menu">
-                    <a href="#" class="nav-item active" onclick="navigateTo('staffDashboard')" data-i18n="upcomingClasses">Upcoming Classes</a>
+                    <a href="#" class="nav-item active" onclick="navigateTo('staffDashboard')" data-i18n="upcomingClasses">Classes</a>
                     <a href="#" class="nav-item" onclick="navigateTo('createBooking')" data-i18n="createBooking">Create Booking</a>
-                    <a href="#" class="nav-item" onclick="logout()" data-i18n="logout">Logout</a>
+                    <a href="#" class="nav-item btn-ghost" onclick="logout()" data-i18n="logout">Logout</a>
                 </div>
             </div>
-            
-            <h2 data-i18n="upcomingClasses">Upcoming Classes</h2>
-            <div id="staffClassList">
-                <!-- Classes will be loaded here with attendee functionality -->
+
+            <div class="card">
+                <h2 data-i18n="upcomingClasses">Class Management</h2>
+                <p>Manage classes and view attendee information</p>
+                <div id="staffClassList" class="dashboard-grid">
+                    <!-- Classes will be loaded here with attendee functionality -->
+                </div>
             </div>
         </div>
     `,
@@ -179,7 +177,37 @@ const views = {
                 <button onclick="navigateTo('memberDashboard')" class="btn btn-accent" data-i18n="backToDashboard">Back to Dashboard</button>
             </div>
         </div>
-    `
+    `,
+    
+    attendees: `
+        <div class="fade-in">
+            <div class="navbar">
+                <div class="nav-logo">
+                    <img src="assets/logo.svg" alt="LEO Diva Logo">
+                    <h1 data-i18n="appTitle">LEO Diva</h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="#" class="nav-item" onclick="navigateTo('staffDashboard')" data-i18n="upcomingClasses">Classes</a>
+                    <a href="#" class="nav-item" onclick="navigateTo('createBooking')" data-i18n="createBooking">Create Booking</a>
+                    <a href="#" class="nav-item btn-ghost" onclick="logout()" data-i18n="logout">Logout</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="attendees-header">
+                    <div class="attendees-title-section">
+                        <h2 id="attendees-title" data-i18n="classAttendees">Class Attendees</h2>
+                        <p id="attendees-subtitle" data-i18n="viewAndManageParticipants">View and manage class participants</p>
+                    </div>
+                </div>
+                <div id="attendeesList" class="attendees-grid">
+                    <!-- Attendees will be loaded here -->
+                </div>
+            </div>
+        </div>
+    `,
+    
+
 };
 
 function navigateTo(view) {
@@ -206,6 +234,12 @@ function navigateTo(view) {
         case 'createBooking':
             document.getElementById('bookingForm').addEventListener('submit', handleCreateBooking);
             break;
+        case 'attendees':
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+                loadAttendees();
+            }, 100);
+            break;
     }
     
     // Update language text
@@ -214,8 +248,8 @@ function navigateTo(view) {
 
 function handleLogin(e) {
     e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
     
     if (login(email, password)) {
         const user = getCurrentUser();
@@ -225,7 +259,7 @@ function handleLogin(e) {
             navigateTo('staffDashboard');
         }
     } else {
-        alert('Invalid credentials. Try client1@example.com / 123456 or reception1@example.com / 123456');
+        alert('Invalid credentials. Try reception@leo.com / 1234 or member@leo.com / 1234');
     }
 }
 
@@ -238,16 +272,23 @@ function handleCreateBooking(e) {
 function loadMemberClasses() {
     const classList = document.getElementById('classList');
     const classes = getTodaysClasses();
-    
+
     classList.innerHTML = classes.map(cls => `
-        <div class="card schedule-item">
-            <div>
-                <h3>${cls.name}</h3>
-                <p class="schedule-trainer">${t('classTrainer')}: ${cls.trainer}</p>
-                <p class="schedule-time">${t('classTime')}: ${cls.time}</p>
+        <div class="card scale-in">
+            <div class="schedule-info">
+                <h3 class="schedule-title">${cls.name}</h3>
+                <p class="schedule-trainer">${cls.trainer}</p>
+                <p class="schedule-time">${cls.time} • ${cls.day}</p>
                 <p>${cls.description}</p>
+                <div class="schedule-capacity">
+                    <span>${cls.booked}/${cls.capacity} booked</span>
+                    <span>•</span>
+                    <span>${cls.level}</span>
+                </div>
             </div>
-            <button class="btn btn-accent" onclick="bookClass('${cls.id}')" data-i18n="bookNow">Book Now</button>
+            <button class="btn btn-accent" onclick="bookClass('${cls.id}')" data-i18n="bookNow">
+                <span>Book Now</span>
+            </button>
         </div>
     `).join('');
 }
@@ -329,8 +370,9 @@ function cancelBooking(classId) {
 }
 
 function viewAttendees(classId) {
-    // In a real app, this would fetch actual attendees
-    alert(`Showing demo attendees for class ${classId}`);
+    // Store the current class ID for the attendees view
+    window.currentClassId = classId;
+    navigateTo('attendees');
 }
 
 function showQrCode() {
@@ -339,4 +381,61 @@ function showQrCode() {
 
 function processPayment(packageId) {
     navigateTo('paymentSuccess');
+}
+
+
+
+
+function loadAttendees() {
+    const classId = window.currentClassId;
+    const attendeesList = document.getElementById('attendeesList');
+    const attendeesTitle = document.getElementById('attendees-title');
+    const attendeesSubtitle = document.getElementById('attendees-subtitle');
+    
+    // Get class info
+    const classInfo = demoClasses[classId];
+    const attendees = demoAttendees[classId] || [];
+    
+    // Update header
+    attendeesTitle.textContent = `${classInfo.name} - ${t('attendees')}`;
+    attendeesSubtitle.textContent = `${attendees.length} ${t('participants')} • ${classInfo.time} • ${classInfo.day}`;
+    
+    if (attendees.length === 0) {
+        attendeesList.innerHTML = `
+            <div class="card text-center">
+                <p data-i18n="noAttendeesFound">No attendees found for this class.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    attendeesList.innerHTML = attendees.map((attendee, index) => `
+        <div class="card attendee-card scale-in" style="animation-delay: ${index * 0.1}s">
+            <div class="attendee-info">
+                <div class="attendee-avatar">
+                    <span>${attendee.name.charAt(0)}</span>
+                </div>
+                <div class="attendee-details">
+                    <h4>${attendee.name}</h4>
+                    <p class="attendee-email">${attendee.email}</p>
+                    <div class="attendee-meta">
+                        <span class="membership-badge ${attendee.membership}">${attendee.membership === 'premium' ? t('premiumMembership') : t('basicMembership')}</span>
+                        <span class="check-in-time">${t('checkedIn')}: ${attendee.checkInTime}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="attendee-actions">
+                <button class="btn btn-ghost" onclick="viewAttendeeDetails('${attendee.email}')">
+                    <span data-i18n="viewDetails">View Details</span>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function viewAttendeeDetails(email) {
+    // In a real app, this would show detailed attendee information
+    const viewingMessage = t('viewingDetailsFor').replace('{email}', email);
+    const detailsMessage = t('detailsWouldShow');
+    alert(`${viewingMessage}\n\n${detailsMessage}`);
 }
