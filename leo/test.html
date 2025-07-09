@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEO Diva - Test</title>
+</head>
+<body>
+    <h1>LEO Diva Gym Management System - Test</h1>
+    <p>Testing application components...</p>
+    
+    <div id="test-results"></div>
+    
+    <script>
+        // Test script loading
+        const testResults = document.getElementById('test-results');
+        
+        function addTestResult(test, passed) {
+            const div = document.createElement('div');
+            div.style.color = passed ? 'green' : 'red';
+            div.textContent = `${passed ? '✓' : '✗'} ${test}`;
+            testResults.appendChild(div);
+        }
+        
+        // Test 1: Check if data.js loads
+        setTimeout(() => {
+            if (typeof window.demoUsers !== 'undefined') {
+                addTestResult('Demo data loaded', true);
+            } else {
+                addTestResult('Demo data failed to load', false);
+            }
+        }, 100);
+        
+        // Test 2: Check if language files load
+        setTimeout(() => {
+            if (typeof window.currentLanguage !== 'undefined') {
+                addTestResult('Language system loaded', true);
+            } else {
+                addTestResult('Language system failed to load', false);
+            }
+        }, 200);
+        
+        // Test 3: Check if views load
+        setTimeout(() => {
+            if (typeof window.views !== 'undefined') {
+                addTestResult('Views loaded', true);
+            } else {
+                addTestResult('Views failed to load', false);
+            }
+        }, 300);
+        
+        // Test 4: Check if authentication functions exist
+        setTimeout(() => {
+            if (typeof window.login === 'function') {
+                addTestResult('Authentication functions loaded', true);
+            } else {
+                addTestResult('Authentication functions failed to load', false);
+            }
+        }, 400);
+        
+        // Test 5: Check if navigation function exists
+        setTimeout(() => {
+            if (typeof window.navigateTo === 'function') {
+                addTestResult('Navigation function loaded', true);
+            } else {
+                addTestResult('Navigation function failed to load', false);
+            }
+        }, 500);
+    </script>
+    
+    <!-- Load application scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/views.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
